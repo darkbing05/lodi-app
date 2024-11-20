@@ -8,7 +8,10 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = createRouteHandlerClient({ cookies })
-    await supabase.auth.exchangeCodeForSession(code)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+
+    console.log('Callback Data:', data)
+    console.log('Callback Error:', error)
   }
 
   return NextResponse.redirect(new URL('/dashboard', request.url))
