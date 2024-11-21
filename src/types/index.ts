@@ -11,15 +11,15 @@ export interface Profile {
 export type Track = {
   id: string
   title: string
-  file_url: string
-  preview_url?: string
-  category?: string
+  url: string
   user_id: string
+  format: string
+  size: number
+  description?: string
+  category: string
+  plays: number
   downloads: number
   created_at: string
-  playCount: number // Added playCount to match the TrackCard component
-  artist: string // Added artist property
-  artwork: string // Added artwork property
 }
 
 export type Subscription = {

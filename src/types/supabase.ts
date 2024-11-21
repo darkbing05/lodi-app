@@ -61,32 +61,41 @@ export type Database = {
         Row: {
           category: string | null
           created_at: string | null
+          description: string | null
           downloads: number | null
-          file_url: string
+          format: string | null
           id: string
-          preview_url: string | null
+          plays: number | null
+          size: number | null
           title: string
-          user_id: string | null
+          url: string
+          user_id: string
         }
         Insert: {
           category?: string | null
           created_at?: string | null
+          description?: string | null
           downloads?: number | null
-          file_url: string
+          format?: string | null
           id?: string
-          preview_url?: string | null
+          plays?: number | null
+          size?: number | null
           title: string
-          user_id?: string | null
+          url: string
+          user_id: string
         }
         Update: {
           category?: string | null
           created_at?: string | null
+          description?: string | null
           downloads?: number | null
-          file_url?: string
+          format?: string | null
           id?: string
-          preview_url?: string | null
+          plays?: number | null
+          size?: number | null
           title?: string
-          user_id?: string | null
+          url?: string
+          user_id?: string
         }
         Relationships: []
       }
