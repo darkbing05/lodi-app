@@ -29,10 +29,10 @@ export default function UploadButton({
       
       const { error } = await supabase.from('tracks').insert({
         title: file.name.split('.')[0],
-        file_url: fileUrl,
+        url: fileUrl, // Corrected column name from 'file_url' to 'url'
         user_id: profile.id,
         downloads: 0,
-        playCount: 0,
+        plays: 0,
         artist: profile.username
       })
       

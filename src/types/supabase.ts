@@ -13,6 +13,7 @@ export type Database = {
         Row: {
           avatar_url: string | null
           id: string
+          name: string | null
           role: Database["public"]["Enums"]["user_role"] | null
           updated_at: string | null
           username: string | null
@@ -20,6 +21,7 @@ export type Database = {
         Insert: {
           avatar_url?: string | null
           id: string
+          name?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
           updated_at?: string | null
           username?: string | null
@@ -27,6 +29,7 @@ export type Database = {
         Update: {
           avatar_url?: string | null
           id?: string
+          name?: string | null
           role?: Database["public"]["Enums"]["user_role"] | null
           updated_at?: string | null
           username?: string | null
@@ -59,6 +62,7 @@ export type Database = {
       }
       tracks: {
         Row: {
+          artist: string
           category: string | null
           created_at: string | null
           description: string | null
@@ -72,6 +76,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          artist?: string
           category?: string | null
           created_at?: string | null
           description?: string | null
@@ -85,6 +90,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          artist?: string
           category?: string | null
           created_at?: string | null
           description?: string | null

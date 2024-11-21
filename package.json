@@ -7,13 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "update-types": "npx supabase gen types typescript --project-id tcfozaqmipfgvgxhnfke --schema public > src/types/supabase.ts"
+    "update-types": "npx supabase gen types typescript --project-id tcfozaqmipfgvgxhnfke --schema public > src/types/supabase.ts",
+    "list-tables": "npx supabase gen types typescript --project-id tcfozaqmipfgvgxhnfke --schema public --only-tables > src/types/index.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",
     "@aws-sdk/lib-storage": "^3.0.0",
     "@aws-sdk/s3-request-presigner": "^3.0.0",
     "@hookform/resolvers": "^3.9.1",
+    "@prisma/client": "^5.22.0",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-progress": "^1.1.0",
@@ -47,6 +49,7 @@
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
+    "prisma": "^5.22.0",
     "supabase": "^1.223.10",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

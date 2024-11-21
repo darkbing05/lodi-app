@@ -20,6 +20,8 @@ export type Track = {
   plays: number
   downloads: number
   created_at: string
+  artist: string
+  playCount?: number
 }
 
 export type Subscription = {

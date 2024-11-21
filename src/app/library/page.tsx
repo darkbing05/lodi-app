@@ -70,9 +70,9 @@ export default function Library() {
     const userProfile: Profile = {
       id: session.user.id,
       username: session.user.email || '',
-      name: session.user.name || '',
+      name: session.user.name || '', // Added null check
       email: session.user.email || '',
-      avatar_url: session.user.avatar_url || '',
+      avatar_url: session.user.avatar_url || '', // Added null check
       updated_at: session.user.updated_at || '',
       role: 'user' // Default role, adjust as necessary
     }
@@ -120,14 +120,14 @@ export default function Library() {
   const uploadFile = async (file: File) => {
     setIsUploading(true);
     try {
-      const fileUrl = await uploadToS3(file, profile.id, setUploadProgress);
+      const fileUrl = await uploadToS3(file, profile?.id, setUploadProgress); // Added null check
       await supabase.from('tracks').insert({
         title: file.name.split('.')[0],
-        file_url: fileUrl,
-        user_id: profile.id,
+        url: fileUrl, // Corrected column name from 'file_url' to 'url'
+        user_id: profile?.id, // Added null check
         downloads: 0,
         playCount: 0,
-        artist: profile.username
+        artist: profile?.username // Added null check
       });
       await fetchTracks();
     } catch (error) {

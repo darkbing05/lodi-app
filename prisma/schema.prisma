@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id         String   @id @default(cuid())
+  username   String
+  name       String
+  email      String
+  avatar_url String?
+  updated_at DateTime?
+  role       String   @default("user")
+}
+
+model Track {
+  id          String   @id @default(cuid())
+  title       String
+  url         String
+  user_id     String
+  format      String?
+  size        Int?
+  description String?
+  category    String?
+  plays       Int      @default(0)
+  downloads   Int      @default(0)
+  created_at  DateTime @default(now())
+  artist      String   @default("")
+
+  @@index([user_id])
+}
