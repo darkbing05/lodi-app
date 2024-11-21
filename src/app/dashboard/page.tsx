@@ -4,6 +4,15 @@ import { Home, Library, User, Settings, LogOut, Bell, Search, Menu, X } from 'lu
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import Sidebar from 'components/sidebar'
+
+const navItems = [
+  { label: 'Dashboard', href: '/dashboard', icon: Home },
+  { label: 'Library', href: '/library', icon: Library },
+  { label: 'Profile', href: '/profile', icon: User },
+  { label: 'Settings', href: '/settings', icon: Settings }
+]
+
 
 export default function Dashboard() {
   const router = useRouter()
@@ -47,26 +56,13 @@ export default function Dashboard() {
   return (
     <div className="flex h-screen bg-white">
       {/* Desktop Sidebar */}
-      <div className={`hidden md:block w-64 bg-[#1a1b1e] text-white p-6 transition-all duration-300 ${windowWidth < 1024 ? 'w-20' : 'w-64'}`}>
-        <div className="mb-8">
-          <h1 className={`text-2xl font-bold ${windowWidth < 1024 ? 'text-center' : ''}`}>
-            {windowWidth < 1024 ? 'L' : 'LODI'}
-          </h1>
-          <p className={`text-sm text-gray-400 ${windowWidth < 1024 ? 'hidden' : ''}`}>Discover</p>
-        </div>
-
-        <div className="space-y-6">
-          <div className={`text-gray-400 text-sm font-medium ${windowWidth < 1024 ? 'hidden' : ''}`}>Dashboard</div>
-          <NavLinks />
-          <button 
-            onClick={handleLogout}
-            className="flex items-center space-x-3 p-3 text-red-500 hover:bg-red-500/10 rounded-lg w-full"
-          >
-            <LogOut className="w-5 h-5" />
-            <span className={windowWidth < 1024 ? 'hidden' : ''}>Logout</span>
-          </button>
-        </div>
-      </div>
+      <Sidebar 
+        navItems={navItems}
+        logo="LODI"
+        logoutAction={handleLogout}
+        mobileMenuOpen={isMobileMenuOpen}
+        onMobileMenuClose={() => setIsMobileMenuOpen(false)}
+      />
 
       {/* Mobile Menu */}
       <div className={`fixed inset-0 bg-[#1a1b1e] z-50 transform ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 md:hidden`}>
