@@ -12,6 +12,11 @@ export async function GET(request: Request) {
 
     console.log('Callback Data:', data)
     console.log('Callback Error:', error)
+
+    // Clear firstLogin from localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('firstLogin')
+    }
   }
 
   return NextResponse.redirect(new URL('/dashboard', request.url))

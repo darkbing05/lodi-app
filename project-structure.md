@@ -38,9 +38,11 @@
 0- src/middleware.ts
 0- src/app/favicon.ico
 0- src/app/globals.css
+0- src/app/home.tsx
 0- src/app/layout.tsx
 0- src/app/not-found.tsx
 0- src/app/page.tsx
+0- src/app/api/v1/tracks/route.ts
 0- src/app/auth/callback/route.ts
 0- src/app/dashboard/page.tsx
 0- src/app/dashboard/Sidebar.tsx
@@ -48,6 +50,7 @@
 0- src/app/fonts/GeistVF.woff
 0- src/app/library/page.tsx
 0- src/app/login/page.tsx
+0- src/components/FirstLoginRedirect.tsx
 0- src/components/auth/AuthForm.tsx
 0- src/components/dashboard/CategoryCard.tsx
 0- src/components/dashboard/LogoutButton.tsx
@@ -59,6 +62,11 @@
 0- src/components/player/PreviewPlayer.tsx
 0- src/components/player/TrackCard.tsx
 0- src/components/upload/TrackUpload.tsx
+0- src/hooks/useAuth.ts
+0- src/hooks/useFirstLoginRedirect.ts
+0- src/lib/axios.ts
 0- src/lib/store.ts
 0- src/lib/supabase.ts
+0- src/services/track.service.ts
 0- src/types/index.ts
+0- src/types/dtos/track.dto.ts

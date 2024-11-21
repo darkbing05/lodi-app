@@ -124,6 +124,12 @@ src/
 }
 ```
 
+### Recent Updates
+1. Updated: Layouts and design of homepage, 404, and structure.
+2. Added: Script for generating project structure.
+3. Dashboard: Improved UI Logout functionality (work in progress).
+4. Added: Sidebar Dashboard (work in progress).
+
 ### Next Steps
 - [ ] Implement music upload for musicians/admins
 - [ ] Add music library browsing and search

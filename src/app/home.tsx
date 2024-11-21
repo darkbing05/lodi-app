@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Music2, Download, BrainCircuit, Building2, Disc3, MessageSquare, Sparkles, Globe2 } from 'lucide-react';
+import { Music2, Download, BrainCircuit, Building2, Disc3, MessageSquare, Sparkles, Globe2, UserCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface FeatureCardProps {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -22,16 +23,69 @@ const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps) => (
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('creators');
+  const [session, setSession] = useState(null);
   const supabase = createClientComponentClient();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check active session
+    const checkSession = async () => {
+      const { data: { session: currentSession }, error } = await supabase.auth.getSession();
+      if (currentSession) {
+        setSession(currentSession);
+        
+        // Check firstLogin in localStorage
+        const firstLogin = localStorage.getItem('firstLogin');
+        if (firstLogin === 'true') {
+          localStorage.setItem('firstLogin', 'false');
+          router.push('/dashboard');
+        }
+      } else {
+        setSession(null);
+      }
+
+      // Optional: Redirect to dashboard if logged in
+      // if (currentSession) {
+      //   router.push('/dashboard');
+      // }
+    };
+
+    checkSession();
+
+    // Set up auth state change listener
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [supabase, router]);
+
+  const handleAuthClick = () => {
+    if (session) {
+      router.push('/dashboard');
+    } else {
+      router.push('/login');
+    }
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#00B5E2] via-[#0077BE] to-[#00B5E2]">
+      {/* Auth Button */}
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={handleAuthClick}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all text-white"
+        >
+          <UserCircle className="w-5 h-5" />
+          <span>{session ? 'Dashboard' : 'Login'}</span>
+        </button>
+      </div>
+
       {/* Hero Section */}
       <div className="px-6 py-24 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <div className="relative mb-8 mx-auto w-24 h-24">
             <Disc3 className="w-24 h-24 text-[#CCFF00] animate-spin-slow absolute" />
-            {/* <Music2 className="w-12 h-12 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" /> */}
           </div>
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-[#CCFF00] to-white">
             LODI Platform
